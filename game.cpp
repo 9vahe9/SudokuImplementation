@@ -1,16 +1,21 @@
 #include "game.h"
 
 Game::Game(QObject* parent) : board(9, QVector<int>(9, 0))
+    , x(-1)
+    , y(-1)
 {
     full_board = SudokuGenerator::getGeneratedSudoku();
+}
 
+void Game::init_board()
+{
     for (int i = 0; i < 3; ++i){
         for (int j = 0; j < 3; ++j){
             init_block(i * 3, j * 3);
         }
     }
 
-    // emit board_is_ready();
+    emit board_is_ready();
 }
 
 void Game::init_block(int i, int j)
@@ -25,10 +30,12 @@ void Game::init_block(int i, int j)
 
     case 1:{
         count = std::rand() % 3 + 3;
+        break;
     }
 
     case 2:{
         count = std::rand() % 3 + 2;
+        break;
     }
 
     default:{
@@ -53,4 +60,35 @@ void Game::init_block(int i, int j)
 QVector<QVector<int>> Game::getBoard() const
 {
     return board;
+}
+
+void Game::setDifficulty(int diff)
+{
+    difficulty = diff;
+}
+
+void Game::setCoords(int i, int j)
+{
+    x = i;
+    y = j;
+}
+
+int Game::getX()
+{
+    return x;
+}
+
+int Game::getY()
+{
+    return y;
+}
+
+bool Game::checkPos(int i, int j) const
+{
+    return !board[i][j];
+}
+
+void Game::numberEvent(int number)
+{
+
 }

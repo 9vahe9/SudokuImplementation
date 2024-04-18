@@ -6,6 +6,8 @@
 #include <QGridLayout>
 #include <QPushButton>
 #include <QLabel>
+#include <QHBoxLayout>
+#include <QKeyEvent>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -21,18 +23,16 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void keyPressEvent(QKeyEvent *event) override;
+
 private:
     //Ui::MainWindow *ui;
     Game* game;
     QGridLayout* gridLayout;
 
-    QLabel* hor_lbl1;
-    QLabel* hor_lbl2;
-    QLabel* ver_lbl1;
-    QLabel* ver_lbl2;
-    //  vectori mej hat 3 knopkka difficult amen mek@ ira bardutyun
-    // 1 hat el knopa xaxi skizb@ sksi
-    //  input window anun
+    QVector<QPushButton*> difficultyButtons;
+    QPushButton* startButton;
+    QLabel* timeLabel;
 
 private:
     void handleStart();
