@@ -2,7 +2,6 @@
 #include <ctime>
 #include <algorithm>
 #include "SudokuGenerator.h"
-#include <iostream>
 
 QVector<QVector<int>> SudokuGenerator::getGeneratedSudoku()
 {
@@ -40,7 +39,7 @@ QVector<QVector<int>> SudokuGenerator::getGeneratedSudoku()
         shuffleRowBlocks,
         shuffleColBlocks
     };
-    
+
     for (int i = 0; i < 15; ++i) {
         int index = std::rand() % shuffle_func.size();
         shuffle_func[index](board);
@@ -156,7 +155,7 @@ void SudokuGenerator::shuffleColBlocks(QVector<QVector<int>>& board)
 {
     const int block_size = 3;
     QVector<int> shuffle_index(block_size, 0);
-    
+
     for (int i = 0; i < block_size; ++i)
     {
         shuffle_index[i] = block_size * (std::rand() % block_size);

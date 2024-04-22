@@ -8,6 +8,8 @@
 #include <QLabel>
 #include <QHBoxLayout>
 #include <QKeyEvent>
+#include <QMessageBox>
+#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -28,13 +30,21 @@ public:
 private:
     //Ui::MainWindow *ui;
     Game* game;
-    QGridLayout* gridLayout;
+    QGridLayout* grid_layout;
 
-    QVector<QPushButton*> difficultyButtons;
-    QPushButton* startButton;
-    QLabel* timeLabel;
+    QVector<QPushButton*> difficulty_buttons;
+    QPushButton* start_button;
+    QPushButton* reset_game;
+    QLabel* heart_label;
+    QLabel* time_label;
+    int seconds;
+    QTimer* timer;
 
 private:
     void handleStart();
+    void addOnGrid();
+    void changeHeartLabel();
+
+    void resetGame();
 };
 #endif // MAINWINDOW_H
